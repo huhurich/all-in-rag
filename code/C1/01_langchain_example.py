@@ -46,11 +46,15 @@ prompt = ChatPromptTemplate.from_template("""请根据下面提供的上下文�
                                           )
 
 # 配置大语言模型
+# 修改说明：
+# 1. model: 必须用硅基流动的全名 "deepseek-ai/DeepSeek-V3"
+# 2. api_base: 显式指定硅基流动的地址，防止它去连 DeepSeek 官网
 llm = ChatDeepSeek(
-    model="deepseek-chat",
+    model="deepseek-ai/DeepSeek-V3",     # <--- 修改点 1：模型全称
     temperature=0.7,
     max_tokens=4096,
-    api_key=os.getenv("DEEPSEEK_API_KEY")
+    api_key=os.getenv("DEEPSEEK_API_KEY"),
+    api_base="https://api.siliconflow.cn/v1"  # <--- 修改点 2：添加这一行
 )
 
 # 用户查询
